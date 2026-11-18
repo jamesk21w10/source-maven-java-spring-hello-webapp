@@ -28,8 +28,6 @@ pipeline {
     stage('Build Container Image') {
       agent { label 'controller' }
       steps {
-        sh 'docker stop mytomcat'
-        sh 'docker rm mytomcat'
         sh 'docker image build -t jamesk21w10/mytomcat .'
       }
     }
@@ -52,7 +50,8 @@ pipeline {
     stage('Run Container') {
       agent { label 'controller' }
       steps {
-        sh 'docker container run --detach --name mytomcat -p 80:8080 jamesk21w10/mytomcat:latest'
+        // sh 'docker container run --detach --name mytomcat -p 80:8080 jamesk21w10/mytomcat:latest'
+        ansiblePlaybook(playbook:'container-playbook.yaml')
       }
     }
   }
