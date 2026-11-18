@@ -1,5 +1,5 @@
 hosts: localhost
-connection: local 
+connection: local
 tasks:
   - docker_container: 
       name: mytomcat
