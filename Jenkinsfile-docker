@@ -28,6 +28,7 @@ pipeline {
     stage('Build Container Image') {
       agent { label 'controller' }
       steps {
+        sh 'docker stop mytomcat'
         sh 'docker rm mytomcat'
         sh 'docker image build -t jamesk21w10/mytomcat .'
       }
