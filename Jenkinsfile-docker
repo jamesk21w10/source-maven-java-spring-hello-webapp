@@ -37,6 +37,7 @@ pipeline {
       steps {
         sh 'docker image tag jamesk21w10/mytomcat jamesk21w10/mytomcat:v${BUILD_NUMBER}' // Tagging with build number
         sh 'docker image tag jamesk21w10/mytomcat jamesk21w10/mytomcat:latest ' // Tagging with latest
+        sh 'docker image rm jamesk21w10/mytomcat:v${BUILD_NUMBER-1}'
       }
     }
     stage('Push Container Image') {
